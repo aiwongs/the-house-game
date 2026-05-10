@@ -1,132 +1,72 @@
-The House - simple adventure game
-=================================
+# The House - 剧情重制 & 中文增强版 (Remastered by aiwongs)
 
-Introduction
-------------
+## 📖 项目简介
 
-I've wanted to create a game since a long time. You know - one of those cool things you'd like try. :) When I started working on this project I had only basic knowledge about JS. Very basic. I didn't even know how to define an array and JS objects and methods were some kind of mystery. Thanks to this game my skills have developed tremendously. I'm still far from calling myself "pro JS dev" but I've got siginficantly closer.
+本项目是基于 Artur Kot 的原创冒险游戏 [The House](https://github.com/arturkot/the-house) 进行的深度二次开发版本。在保留原版优秀的 HTML5/JS 框架基础上，我进行了全方位的内容革新，将其从一个简短的初作进化为一个拥有多分支、新剧情的沉浸式体验版本。
 
-**You can play it [right here](http://the-house.arturkot.pl).** Please mind that:
+**🎮 在线游玩：** [点击这里开始你的冒险](https://aiwongs.github.io/the-house/)
 
-* it's very, very short,
-* it's my first game ever. :)
+---
 
-How does it work?
------------------
+## ✨ aiwongs 版核心改进 (3 Years Ago Updates)
+相对于原版，本项目在以下维度进行了深度定制：
 
-The game is made using **HTML, CSS (Less) and JS (depends strongly on jQuery)**. Every room, roughly speaking, has simple markup in HTML which defines items (such as table, window, etc.) and click areas. CSS is responsible for graphic and JS for all the rest (DOM animations, interactions, saving game state). Since I had some experience with developing and designing websites I decided that HTML would be the right technology to start with.
+### 1. 深度内容重构、视觉美术重绘 (Graphics & UI)
+* **全界面汉化**：对游戏内的文本、对话、道具说明及 UI 进行了精准的中文化处理，确保剧情表达自然。
+* **UI 交互优化**：更新了 `menu.png` 菜单界面及部分场景贴图（如 `room.jpg`、`room_picture_snow.png`），使其更符合重制版的艺术风格。
+* **剧情重写**：巧妙地改变了原有的故事走向，为游戏注入了全新的背景设定和叙事逻辑。
+* **多分支路线**：新增了剧情分支，玩家的选择将引导至不同的结果，极大地提升了游戏的可玩性和探索欲。
 
-### A little bit more about scripts:
+### 2. 剧情与逻辑重构 (Story & Scripting)
+* **脚本优化**：针对汉化后的文本框溢出、字体显示等细节问题进行了代码级修正。
+* **多分支剧情设计**：通过对 `js/scenes.js` 和 `js/game.js` 的深度修改，重构了游戏的叙事走向，加入了全新的剧情分支和结局。
+* **中文本地化**：对所有 HTML 页面（从 `intro.html` 到 `exit.html`）进行了完整的文本汉化与排版优化。
+* **核心代码增强**：
+    * 优化了 `js/audio.js`：支持更复杂的音频调度。
+    * 修改了 `js/items.js` 和 `js/npcs.js`：支持新剧情下的道具交互与角色反应。
 
-* `js/audio.js` - all sounds are defined here,
-* `js/data.js` - responsible for saving game state,
-* `js/dialogue_box.js` - responsible for various popups,
-* `js/game.js` - sits on the top of all scripts and uses them to genrate game,
-* `js/items.js` - manages items found by a player,
-* `js/npcs.js` - non playable charcters,
-* `old_browser.js` - fires when not supported browser is detected,
-* `js/room.js` - generates rooms, responsible for interaction of the main character wit the game world **the A* (A-Star) algorithm here is by Andrea Giammarchi**,
-* `js/scenes.js` - cutscenes are stored here,
-* `js/settings.js` - game settings, at the time this file is responsible for reseting the game only :P,
-* `js/text_cloud.js` - speech balloons for the main character,
-* `js/tooltip.js` - tooltips :),
-* `js/utility.js` - super simple tool: I use it to define hit-areas for tha game grid,
-* `js/view.js` - generates outside views (when you look throught a window).
+### 3. 音效环境重编 (Soundscape)
+* **全面替换音轨**：针对新剧情，更新了大量的 MP3 资源。
+* **关键场景音效**：
+    * 重新配置了 `aquarium.mp3`、`corridor.mp3`、`void.mp3` 等核心场景的背景氛围音。
+    * 引入了 `scene_corridor_phone.mp3` 等关键剧情交互音效，增强沉浸感。
 
-Credits
--------
+### 4. 技术架构（基于原版）
+游戏依然采用前端技术栈构建，但针对我的定制化内容进行了逻辑调整：
+* **js/audio.js** - 重新定义了全新的音效资源池。
+* **js/scenes.js** - 存储了我重新设计的剧情分镜与转场逻辑。
+* **js/dialogue_box.js** - 适配了中文显示效果。
 
-It's about time to mention resources (and people behind them) that helped me (A LOT) to create my game.
+---
 
-### Sound
+## 🛠️ 技术架构说明
 
-All sounds come from [Freesound.org](http://www.freesound.org). Full list below:
+本项目利用现代 Web 技术栈实现，核心文件分布如下： **逻辑重映射** & **资源管理**
+* **`/js/`**：游戏大脑。包含 aiwongs 修改后的 `game.js`（主逻辑）、`scenes.js`（剧情分镜）及 `settings.js`，确保 `js/data.js` 能够准确保存新剧情线下的玩家进度。。
+* **`/css/`**：视觉样式。主要基于 Less 编写，包含 `styles.css` 的最终编译版本。
+* **`/sound/`**：听觉灵魂。包含所有重制版的背景音乐与交互音效。
+* **`/images/`**：场景素材。包含所有重绘的静态资源与动画序列帧。
 
-* ["Distant Shot"](http://www.freesound.org/people/ERH/sounds/32799/) by [ERH](http://www.freesound.org/people/ERH/)
-* ["Electric Wooshes"](http://www.freesound.org/people/Glaneur%20de%20sons/sounds/34172/) by [Glaneur de sons](http://www.freesound.org/people/Glaneur%20de%20sons/)
-* ["Sad Pattern Drone"](http://www.freesound.org/people/patchen/sounds/24701/) by [patchen](http://www.freesound.org/people/patchen/)
-* ["Sad Pattern Drone"](http://www.freesound.org/people/suonho/sounds/17724/) by [suonho](http://www.freesound.org/people/suonho/)
-* ["Swell Pad"](http://www.freesound.org/people/ERH/sounds/34141/) by [ERH](http://www.freesound.org/people/ERH/)
-* ["Horror Drone 001"](http://www.freesound.org/people/DJ%20Chronos/sounds/52134/) by [DJ Chronos](http://www.freesound.org/people/DJ%20Chronos/)
-* ["Creepy Phone"](http://www.freesound.org/people/FreqMan/sounds/25079/) by [FreqMan](http://www.freesound.org/people/FreqMan/)
-* ["Adrift On A Glassy Sea loop"](http://www.freesound.org/people/troutstrangler/sounds/25878/) by [troutstrangler](http://www.freesound.org/people/troutstrangler/)
-* ["Buzz 001"](http://www.freesound.org/people/futureprobe/sounds/18824/) by [futureprobe](http://www.freesound.org/people/futureprobe/)
-* ["Light 1"](http://www.freesound.org/people/TicTacShutUp/sounds/408/) by [TicTacShutUp](http://www.freesound.org/people/TicTacShutUp/)
-* ["Creak 9"](http://www.freesound.org/people/HerbertBoland/sounds/29696/) by [HerbertBoland](http://www.freesound.org/people/HerbertBoland/)
-* ["18 Close Door"](http://www.freesound.org/people/adegenerate/sounds/71212/) by [adegenerate](http://www.freesound.org/people/adegenerate/)
-* ["Open and Close Wooden Door"](http://www.freesound.org/people/fresco/sounds/35617/) by [fresco](http://www.freesound.org/people/fresco/)
-* ["Buzzer Variants#3"](http://www.freesound.org/people/Timbre/sounds/101355/) by [Timbre](http://www.freesound.org/people/Timbre/)
-* ["btn402"](http://www.freesound.org/people/junggle/sounds/26777/) by [junggle](http://www.freesound.org/people/junggle/)
-* ["Shower Curtain"](http://www.freesound.org/people/samplecat/sounds/11561/) by [samplecat](http://www.freesound.org/people/samplecat/)
-* ["SFX(12)"](http://www.freesound.org/people/Nimbyc/sounds/83944/) by [Nimbyc](http://www.freesound.org/people/Nimbyc/)
-* ["Crash"](http://www.freesound.org/people/sagetyrtle/sounds/40158/) by [Sagetyrtle](http://www.freesound.org/people/sagetyrtle/)
-* ["Button Click"](http://www.freesound.org/people/KorgMS2000B/sounds/54405/) by [KorgMS2000B](http://www.freesound.org/people/KorgMS2000B/)
-* ["Fire Forest Inferno"](http://www.freesound.org/people/Dynamicell/sounds/17548/) by [Dynamicell](http://www.freesound.org/people/Dynamicell/sounds/17548/)
-* ["BC Speaky Compactor"](http://www.freesound.org/people/cmusounddesign/sounds/119897/) by [cmusounddesign](http://www.freesound.org/people/cmusounddesign/)
+---
 
-### Graphic
+## 🙏 致谢与声明 (Credits)
 
-* ["Bust Basemesh"](http://chrrambow.deviantart.com/art/Bust-Basemesh-128960722) by [Christian Rambow](http://www.christianrambow.de/)
-* Textures from [CG Textures](http://cgtextures.com/)
+### 原始框架 (Original Engine)
+* **原作者**：Artur Kot (Original Creator)
+* **A* 算法**：Andrea Giammarchi
+* **核心框架**：jQuery, SoundManager 2, Modernizr, jStorage, Spritely.
 
-### JavaScript
+### 本版贡献、二次开发 (Remastered By)
+* **汉化 & 剧情改编**：aiwongs
+* **美术 & 音效重编**：aiwongs
 
-* [Modernizr](http://www.modernizr.com/)
-* [SoundManager 2](http://www.schillmania.com/projects/soundmanager2/)
-* [jQuery](http://jquery.com/)
-* [jQuery Colors](http://www.bitstorm.org/jquery/color-animation/) by [Edwin Martin](http://www.bitstorm.org/edwin/en/)
-* [jQuery Preload CSS Images](http://www.filamentgroup.com/lab/update_automatically_preload_images_from_css_with_jquery/) by [filament group](http://www.filamentgroup.com/about)
-* [jStorage](http://www.jstorage.info/) by [Andris Reinman](http://www.andrisreinman.com/)
-* [Spritely](http://spritely.net/) by [Artlogic](http://www.artlogic.net/)
-* [jQuerty UI](http://jqueryui.com/)
-* [jQuerty Transit](http://ricostacruz.com/jquery.transit/) by [Rico Sta. Cruz](http://ricostacruz.com/)
-* [A* (A-Star) algorithm function](http://devpro.it/examples/astar/) by [Andrea Giammarchi](http://www.blogger.com/profile/16277820774810688474)
+---
 
-Licenses
---------
+## ⚖️ 开源许可 (Licenses)
 
-### The House code:
+* **代码部分 (Code)**: 遵循 [MIT License](LICENSE.md)。
+* **艺术素材 (Artwork)**: 遵循 [Creative Commons Attribution 3.0 License](https://creativecommons.org/licenses/by/3.0/)。
 
-MIT License
+---
 
-Copyright (c) 2019 Artur Kot
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-
-### The House artwork:
-
-[Creative Commons Attribution 3.0 License](http://creativecommons.org/licenses/by/3.0/)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+**注意**：本重制版旨在展示 Web 游戏开发的无限可能，欢迎通过 Issue 提交你的游玩反馈或发现的隐藏结局！
