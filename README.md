@@ -4,7 +4,7 @@
 
 本项目是基于 Artur Kot 的原创冒险游戏 [The House](https://github.com/arturkot/the-house) 进行的深度二次开发版本。在保留原版优秀的 HTML5/JS 框架基础上，我进行了全方位的内容革新，将其从一个简短的初作进化为一个拥有多分支、新剧情的沉浸式体验版本。
 
-**🎮 在线游玩：** [点击这里开始你的冒险](https://aiwongs.github.io/the-house/)
+**🎮 在线游玩：** [点击这里开始你的冒险](https://aiwongs.github.io/the-house-game/)
 
 ---
 
